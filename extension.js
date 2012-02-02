@@ -60,11 +60,10 @@ SkypeSearchProvider.prototype = {
     getInitialResultSet: function(terms) {
 	let matched = [];
 	// first escape user input
-	terms = terms.toString().replace(/([\^[$.|?*)(+-])/gi, "\\$1");
-	let rg = RegExp( terms, "gi");
+	terms = terms.toString();
 	for(i in allFriends) {
 		let friend = allFriends[i];
-		if (rg.test(friend.name) || rg.test(friend.id)) {
+		if (friend.name.indexOf(terms) != -1 || friend.id.indexOf(terms) != -1) {
 			matched.push(friend);
 		}
 	}
